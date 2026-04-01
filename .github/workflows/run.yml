@@ -1,0 +1,39 @@
+name: Run Python Tool
+
+on:
+  workflow_dispatch:
+    inputs:
+      tool_name:
+        description: "Nama file python (contoh: tool.py)"
+        required: true
+        default: "main.py"
+
+jobs:
+  run-tool:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-requests
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          pip install requests
+
+      - name: Run selected tool
+        run: |
+          echo "Menjalankan ${{ github.event.inputs.tool_name }}"
+          python ${{ github.event.inputs.tool_name }}
