@@ -530,7 +530,7 @@ def setup_project(working_dir, app_name, app_id, version_name, version_code, sel
         subprocess.run("npm init -y", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     else:
         subprocess.run("npm run build", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    subprocess.run("npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/app", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run("npm install @capacitor/core @capacitor/cli @capacitor/android @capacitor/app @capacitor/preferences", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run(f'npx cap init "{app_name}" "{app_id}" --web-dir {web_dir}', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run("npx cap add android", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     subprocess.run("npx cap copy android", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
